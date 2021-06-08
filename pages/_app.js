@@ -1,13 +1,20 @@
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
 import "../styles/globals.css";
+import { Provider } from "next-auth/client";
 
 function MyApp({ Component, pageProps }) {
-  const [loading] = useAuthState(auth);
-
-  // if (loading) return <h1>Loading...</h1>;
-
-  return <Component {...pageProps} />;
+  return (
+    <Provider session={pageProps.session}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
 export default MyApp;
+
+{
+  /**
+  const [loading] = useAuthState(auth);
+
+  if (loading) return <h1>Loading...</h1>;
+ */
+}
