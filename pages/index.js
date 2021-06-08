@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { getSession, signIn, signOut, useSession } from "next-auth/client";
+import Image from "next/image";
 
 export default function Home() {
   const [session, loading] = useSession();
@@ -33,7 +34,7 @@ export default function Home() {
       {session ? (
         <>
           <h2>Welcome {session.user.name}</h2>
-          <img loading="lazy" src={session.user.image} alt="" />
+          <Image width={30} height={30} src={session.user.image} alt="" />
         </>
       ) : (
         <h2>You are Not Logged In</h2>
